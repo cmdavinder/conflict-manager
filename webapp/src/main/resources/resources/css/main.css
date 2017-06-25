@@ -1,0 +1,19 @@
+.page-header, .page-header h1{
+    margin-top:0;
+    background-color:#292b2c!important;
+    }
+
+.page-header h1{
+     margin-left:2%;
+     }
+
+.page-header h1 small{
+     color:#fff;
+     }
+.mainContainer{
+    padding: 4rem 2rem;
+}
+
+.tab-pane h3 {
+text-align: center;
+}
