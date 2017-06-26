@@ -7,9 +7,10 @@
     <artifactId>conflict-manager</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <modules>
-        <module>entities</module>
-        <module>repository</module>
-        <module>webapp</module>
+        <module>rm-core</module>
+        <module>rm-entities</module>
+        <module>rm-repository</module>
+        <module>rm-webapp</module>
     </modules>
     <packaging>pom</packaging>
 

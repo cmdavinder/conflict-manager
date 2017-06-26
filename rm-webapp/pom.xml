@@ -9,18 +9,23 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>webapp</artifactId>
+    <artifactId>rm-webapp</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
             <groupId>com.hcl.cm</groupId>
-            <artifactId>entities</artifactId>
+            <artifactId>rm-entities</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.hcl.cm</groupId>
-            <artifactId>repository</artifactId>
+            <artifactId>rm-repository</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.hcl.cm</groupId>
+            <artifactId>rm-core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
@@ -34,12 +39,10 @@
     </dependencies>
     <build>
         <plugins>
-            <!-- Spring Boot plugins -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
-
 </project>
