@@ -19,8 +19,7 @@ public class DefaultConflictManager implements ConflictManager {
     public void findConflicts(List<CiReservation> ciReservations) {
 
         Map<String, List<CiReservation>> lookupByCiNameAndEnvName = ciReservations.stream()
-                                                                              .collect(groupingBy(byCiNameAndEnvName));
-
+                                                                                  .collect(groupingBy(byCiNameAndEnvName));
 
 
         List<CiReservation> conflicts = new ArrayList<>();
