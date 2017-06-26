@@ -13,19 +13,19 @@ import static java.util.stream.Collectors.*;
 
 public class DefaultConflictManager implements ConflictManager {
 
-    private static final Function<CiReservation, String> byCompNameAndEnvName = e -> e.getCiName() + ":" + e.getEnvironmentName();
+    private static final Function<CiReservation, String> byCiNameAndEnvName = e -> e.getCiName() + ":" + e.getEnvironmentName();
 
     @Override
     public void findConflicts(List<CiReservation> ciReservations) {
 
-        Map<String, List<CiReservation>> lookupByCompNameAndEnvName = ciReservations.stream()
-                                                                              .collect(groupingBy(byCompNameAndEnvName));
+        Map<String, List<CiReservation>> lookupByCiNameAndEnvName = ciReservations.stream()
+                                                                              .collect(groupingBy(byCiNameAndEnvName));
 
 
 
         List<CiReservation> conflicts = new ArrayList<>();
         for (CiReservation ciReservation : ciReservations) {
-            List<CiReservation> ciReservationsByEnv = lookupByCompNameAndEnvName.get(ciReservation.getCiName() + ":" + ciReservation.getEnvironmentName());
+            List<CiReservation> ciReservationsByEnv = lookupByCiNameAndEnvName.get(ciReservation.getCiName() + ":" + ciReservation.getEnvironmentName());
         }
 
 
