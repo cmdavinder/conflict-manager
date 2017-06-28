@@ -33,8 +33,4 @@ public class Project {
 
     @Column(name="CREATED_ON")
     private Date createdOn;
-
-    public String getProjectName() {
-        return projectName;
-    }
 }

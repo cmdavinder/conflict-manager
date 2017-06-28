@@ -5,7 +5,9 @@
     <link rel="stylesheet" th:href="@{/css/lib/bootstrap/bootstrap.min.css}"></link>
     <link rel="stylesheet" th:href="@{/css/main.css}"></link>
     <link rel="stylesheet" th:href="@{/css/project/addProject.css}"></link>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/jq-2.2.4/dt-1.10.15/datatables.min.css"/>
+    <link rel="stylesheet" th:href="@{/css/cireservation/manageCiReservations.css}"></link>
+    <link rel="stylesheet" th:href="@{/css/lib/datatable/datatables.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/lib/datatable/dataTables.bootstrap.min.css}"/>
 </head>
 <body>
 <header>
@@ -17,16 +19,14 @@
 </header>
 <div class="container-fluid">
     <ul class="nav nav-pills">
-        <li class="active"><a data-toggle="pill" href="#addProject">Add Project</a></li>
-        <li><a data-toggle="pill" href="#manageProjects">Manage Projects</a></li>
+        <li onclick="loadProjects()"><a data-toggle="pill" href="#manageProjects">Manage Projects</a></li>
         <li><a data-toggle="pill" href="#manageReleaseCycles">Manage Release Cycles</a></li>
         <li><a data-toggle="pill" href="#manageCiReservations">Manage CI Reservations</a></li>
-        <li><a data-toggle="pill" href="#manageConflicts">Manage Conflicts</a></li>
+        <li><a data-toggle="pill" href="#manageConflicts">Mitigate Conflicts</a></li>
 
     </ul>
     <div class="tab-content">
-        <div id="addProject" class="tab-pane fade in active" th:include="project/addProject :: addProject"></div>
-        <div id="manageProjects" class="tab-pane fade"
+        <div id="manageProjects" class="tab-pane fade in active"
              th:include="project/manageProjects :: manageProjects"></div>
         <div id="manageReleaseCycles" class="tab-pane fade"
              th:include="releasecycle/manageReleaseCycles :: manageReleaseCycles"></div>
@@ -40,9 +40,10 @@
 <script type="text/javascript" th:src="@{/js/lib/jquery/jquery-3.2.1.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/lib/bootstrap/bootstrap.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/lib/hybind/hybind.js}"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/v/bs/jq-2.2.4/dt-1.10.15/datatables.min.js"></script>
-<script type="text/javascript" th:src="@{/js/util/utils.js}"></script>
-<script type="text/javascript" th:src="@{/js/project/addProject.js}"></script>
-<script type="text/javascript" th:src="@{/js/cireservation/manageCiReservations.js}"></script>
+<script type="text/javascript" th:src="@{/js/lib/datatable/datatables.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/common/common.js}"></script>
+<script type="text/javascript" th:src="@{/js/project/index.js}"></script>
+<script type="text/javascript" th:src="@{/js/project/index.js}"></script>
+<script type="text/javascript" th:src="@{/js/cireservation/index.js}"></script>
 </body>
 </html>

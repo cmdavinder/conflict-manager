@@ -4,7 +4,7 @@ package com.hcl.cm.api.converter;
 import com.hcl.cm.api.model.Conflict;
 import com.hcl.cm.entities.CiReservation;
 
-public class ToConflictConverter {
+public class ConvertToConflict {
 
     public static Conflict from(CiReservation reservation) {
         return Conflict.builder()

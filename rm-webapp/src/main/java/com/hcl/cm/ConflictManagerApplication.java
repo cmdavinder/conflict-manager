@@ -1,8 +1,10 @@
 package com.hcl.cm;
 
 
+import com.hcl.cm.entities.Environment;
 import com.hcl.cm.entities.Project;
 import com.hcl.cm.entities.ReleaseCycle;
+import com.hcl.cm.repository.EnvironmentRepository;
 import com.hcl.cm.repository.ProjectRespository;
 import com.hcl.cm.repository.ReleaseCycleRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -19,8 +21,12 @@ public class ConflictManagerApplication {
     }
 
     @Bean
-    CommandLineRunner runner(ProjectRespository pr, ReleaseCycleRepository rcr) {
-        return args -> Arrays.asList("p1,p2,p3".split(",")).forEach(e -> {
+    CommandLineRunner runner(ProjectRespository pr, ReleaseCycleRepository rcr, EnvironmentRepository er) {
+        return args -> doInit(pr, rcr, er);
+        }
+
+    private void doInit(ProjectRespository pr, ReleaseCycleRepository rcr, EnvironmentRepository er) {
+        Arrays.asList("p1,p2,p3".split(",")).forEach(e -> {
             Project p = new Project();
             ReleaseCycle r = new ReleaseCycle();
             r.setProject(p);
@@ -34,5 +40,15 @@ public class ConflictManagerApplication {
             rcr.save(r);
             rcr.save(r1);
         });
+
+        Environment env1 = new Environment();
+        env1.setName("DEV");
+        Environment env2 = new Environment();
+        env2.setName("PPE");
+        Environment env3 = new Environment();
+        env3.setName("PRODUCTION");
+        er.save(env1);
+        er.save(env2);
+        er.save(env3);
     }
 }

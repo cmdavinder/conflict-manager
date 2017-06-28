@@ -1,7 +1,7 @@
 package com.hcl.cm.api;
 
 
-import com.hcl.cm.api.converter.ToConflictConverter;
+import com.hcl.cm.api.converter.ConvertToConflict;
 import com.hcl.cm.api.model.Conflict;
 import com.hcl.cm.entities.CiReservation;
 import org.apache.commons.lang3.tuple.ImmutablePair;
@@ -28,12 +28,12 @@ public class DefaultConflictManager implements ConflictManager {
 
                     Long CiId1 = reservation1.getCi().getId();
                     Long CiId2 = reservation2.getCi().getId();
-                    if (CiId1 != CiId2) {
+                    if (!Objects.equals(CiId1, CiId2)) {
                         continue;
                     }
                     if (isReleaseCyclesOverlap(reservation1, reservation2)) {
-                        Conflict conflict1 = ToConflictConverter.from(reservation1);
-                        Conflict conflict2 = ToConflictConverter.from(reservation2);
+                        Conflict conflict1 = ConvertToConflict.from(reservation1);
+                        Conflict conflict2 = ConvertToConflict.from(reservation2);
 
                         conflicts.add(conflict1);
                         conflicts.add(conflict2);

@@ -1,3 +1,5 @@
+var APPLICATION_CONTEXT = window.location.href;
+
 (function ($) {
     $.fn.serializeFormJSON = function () {
 

@@ -2,8 +2,7 @@
     $("#addProjectForm").on('submit', function(e){
         e.preventDefault();
         var data = $(this).serializeFormJSON();
-        console.log(data);
-        api = hybind("/cmweb");
+        api = hybind(APPLICATION_CONTEXT);
         projects = [];
         api.$bind("projects", projects);
         projects.$load().then(function(){

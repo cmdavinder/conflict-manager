@@ -13,7 +13,7 @@ import java.util.Collection;
 public class ManageCiReservationsController {
 
     @Autowired
-    ManageCiReservationsService manageCiReservationsService;
+    private ManageCiReservationsService manageCiReservationsService;
 
     @GetMapping("/generateConflicts")
     public Collection<Conflict> generateConflicts(){
