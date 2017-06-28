@@ -1,38 +1,59 @@
 package com.hcl.cm.api;
 
 
-import com.hcl.cm.model.CiReservation;
+import com.hcl.cm.api.converter.ToConflictConverter;
+import com.hcl.cm.api.model.Conflict;
+import com.hcl.cm.entities.CiReservation;
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
+import java.util.*;
 
-import static java.util.stream.Collectors.*;
+import static java.util.stream.Collectors.groupingBy;
 
 public class DefaultConflictManager implements ConflictManager {
 
-    private static final Function<CiReservation, String> byCiNameAndEnvName = e -> e.getCiName() + ":" + e.getEnvironmentName();
+    @Override
+    public Collection<Conflict> findConflicts(List<CiReservation> reservations) {
+        Collection<Conflict> conflicts = new HashSet<>();
+        Map<String, List<CiReservation>> lookupByEnv = reservations.stream()
+                                                                   .collect(groupingBy(e -> e.getEnvironment().getName()));
+        for (String envName : lookupByEnv.keySet()) {
+            List<CiReservation> reservationsForEnv = lookupByEnv.get(envName);
+            int reservationsForEnvCount = reservationsForEnv.size();
+            for (int i = 0; i < reservationsForEnvCount; i++) {
+                for (int j = i + 1; j < reservationsForEnvCount; j++) {
+                    CiReservation reservation1 = reservationsForEnv.get(i);
+                    CiReservation reservation2 = reservationsForEnv.get(j);
+
+                    Long CiId1 = reservation1.getCi().getId();
+                    Long CiId2 = reservation2.getCi().getId();
+                    if (CiId1 != CiId2) {
+                        continue;
+                    }
+                    if (isReleaseCyclesOverlap(reservation1, reservation2)) {
+                        Conflict conflict1 = ToConflictConverter.from(reservation1);
+                        Conflict conflict2 = ToConflictConverter.from(reservation2);
+
+                        conflicts.add(conflict1);
+                        conflicts.add(conflict2);
+                    }
+                }
+            }
+        }
+        return conflicts;
+    }
 
     @Override
-    public void findConflicts(List<CiReservation> ciReservations) {
-
-        Map<String, List<CiReservation>> lookupByCiNameAndEnvName = ciReservations.stream()
-                                                                                  .collect(groupingBy(byCiNameAndEnvName));
-
-
-        List<CiReservation> conflicts = new ArrayList<>();
-        for (CiReservation ciReservation : ciReservations) {
-            List<CiReservation> ciReservationsByEnv = lookupByCiNameAndEnvName.get(ciReservation.getCiName() + ":" + ciReservation.getEnvironmentName());
-        }
-
+    public void mitigateConflicts() {
 
     }
 
-    private void findOverlapAndAddToList(List<CiReservation> reservations) {
-
-
+    private boolean isReleaseCyclesOverlap(CiReservation reservation1, CiReservation reservation2) {
+        Date startDate1 = reservation1.getReleaseCycle().getStartDate();
+        Date endDate1 = reservation1.getReleaseCycle().getEndDate();
+        Date startDate2 = reservation2.getReleaseCycle().getStartDate();
+        Date endDate2 = reservation2.getReleaseCycle().getEndDate();
+        return (startDate1.getTime() <= endDate2.getTime()) && (endDate1.getTime() >= startDate2.getTime());
     }
-
 }

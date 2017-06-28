@@ -4,8 +4,9 @@ package com.hcl.cm.entities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
 @Entity
 @Data
@@ -18,7 +19,7 @@ public class Project {
     @Column(name = "PROJECT_ID")
     private Long id;
 
-    @Column(name = "PROJECT_NAME")
+    @Column(name = "NAME")
     private String projectName;
 
     @Column(name = "PROJECT_START_DATE")
@@ -32,4 +33,8 @@ public class Project {
 
     @Column(name="CREATED_ON")
     private Date createdOn;
+
+    public String getProjectName() {
+        return projectName;
+    }
 }

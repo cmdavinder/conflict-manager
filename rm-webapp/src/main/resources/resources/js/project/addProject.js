@@ -3,7 +3,7 @@
         e.preventDefault();
         var data = $(this).serializeFormJSON();
         console.log(data);
-        api = hybind("/rmweb");
+        api = hybind("/cmweb");
         projects = [];
         api.$bind("projects", projects);
         projects.$load().then(function(){

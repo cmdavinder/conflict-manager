@@ -1,5 +1,6 @@
 package com.hcl.cm.entities;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,20 +11,17 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "ENVIRONMENT")
-public class Environment {
+@Table(name = "CONFIGURATION_ITEM")
+public class ConfigurationItem {
 
     @Id
     @GeneratedValue
-    @Column(name = "ENVIRONMENT_ID")
+    @Column(name = "CI_ID")
     private Long id;
 
-    @Column(name = "NAME")
+    @Column(name = "CI_NAME")
     private String name;
 
-    @Column(name = "DESCRIPTION")
+    @Column(name = "CI_DESCRIPTION")
     private String description;
-
-    @Column(name = "ENVIRONMENT_STATUS")
-    private String status;
 }

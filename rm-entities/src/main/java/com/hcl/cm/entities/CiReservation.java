@@ -1,8 +1,6 @@
 package com.hcl.cm.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -29,6 +27,10 @@ public class CiReservation {
     @ManyToOne
     @JoinColumn(name = "ENVIRONMENT_ID")
     private Environment environment;
+
+    @ManyToOne
+    @JoinColumn(name = "CI_ID")
+    private ConfigurationItem ci;
 
     @Column(name = "CI_RESERVATION_STATUS")
     private String status;

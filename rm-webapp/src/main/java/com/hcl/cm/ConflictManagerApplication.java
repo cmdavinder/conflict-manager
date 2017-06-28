@@ -29,8 +29,6 @@ public class ConflictManagerApplication {
             ReleaseCycle r1 = new ReleaseCycle();
             r1.setProject(p);
             r1.setName("release cycle 2:" + p.getProjectName());
-
-
             p.setProjectName(e);
             pr.save(p);
             rcr.save(r);
