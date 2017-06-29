@@ -17,3 +17,30 @@ function loadProjects(){
         drawProjectsTable(projects);
     });
 }
+ $('document').ready(function () {
+ $("#addProjectBtn").on("click", function(){
+      $("#addProjectContainer").modal('show');
+ });
+
+            $("#modalCloseBtn").on("click", function(){
+               $("#addProjectContainer").modal('hide');
+            });
+
+
+            $("#createProjectBtn").on("click",function(e){
+                e.preventDefault();
+                $("#addProjectContainer").modal('hide');
+                var data = $("#addProjectForm").serializeFormJSON();
+                api = hybind(APPLICATION_CONTEXT);
+                projects = [];
+                api.$bind("projects", projects);
+                projects.$create(data);
+                });
+
+});
+
+
+
+
+
+

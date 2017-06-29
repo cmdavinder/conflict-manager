@@ -34,4 +34,8 @@ public class ReleaseCycle {
 
     @Column(name = "RELEASE_CYCLE_STATUS")
     private String status;
+
+    @ManyToOne
+    @JoinColumn(name = "ENVIRONMENT_ID")
+    private Environment environment;
 }
