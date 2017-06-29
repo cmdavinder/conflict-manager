@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<div th:fragment="manageCiReservations">
+    <h3>Manage CI Reservations</h3>
+    <form id="addProjectForm">
+        <div class="form-group row">
+            <label for="projectSelectorMcr" class="col-2 col-form-label">Project Name</label>
+            <select class="form-control" id="projectSelectorMcr">
+            </select>
+        </div>
+        <div class="form-group row">
+            <label for="releaseCycleSelector" class="col-2 col-form-label">Release Cycle Name</label>
+            <select class="form-control" id="releaseCycleSelector">
+            </select>
+        </div>
+        <div class="form-group row">
+            <label for="ciSelector" class="col-2 col-form-label">CI Name</label>
+            <select class="form-control" id="ciSelector">
+            </select>
+        </div>
+        <button id="generateConflictBtn" type="button" class="btn btn-primary" onclick="loadConflictsTable()">Generate
+            Conflicts
+        </button>
+    </form>
+    <br/>
+    <br/>
+    <table id="conflictsTable" class="table table-striped table-bordered" cellspacing="0" width="100%"/>
+</div>
+</body>
+</html>
